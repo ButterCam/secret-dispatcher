@@ -70,7 +70,10 @@ async function run(): Promise<void> {
     const token: string = core.getInput('token')
     const secretData: SecretData = JSON.parse(
       fs.readFileSync(
-        path.resolve(__dirname, core.getInput('json-path')),
+        path.join(
+          process.env.GITHUB_WORKSPACE as string,
+          core.getInput('json-path')
+        ),
         'utf8'
       )
     )
